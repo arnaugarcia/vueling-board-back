@@ -1,15 +1,10 @@
 const express = require('express');
-const mongoose = require('mongoose');
 require("dotenv").config();
 const cors = require('cors');
 const app = express();
 
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => console.log('Conectado a MongoDB'))
-    .catch(err => console.log('Error al conectar a MongoDB', err));
+const mysql = require("mysql2");
+global.connection = mysql.createConnection(process.env.DATABASE_URL);
 
 app.use(express.json());
 app.use(cors());
