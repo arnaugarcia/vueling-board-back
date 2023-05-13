@@ -1,22 +1,23 @@
-const Question = require('../../models/Question');
 
 class QuestionService {
 
     constructor() {
     }
 
-   getAllQuestions = (req,res) => {
-     return Question.find()
-         .then(questions => res.status(200).json(questions))
-         .catch(error => res.status(500).json({message: 'Error al obtener las preguntas', error}));
-   }
+    async getAll(){
+        return await global.connection.promise().query("SELECT * FROM Question");
+    }
 
-    getOptionsByQuestionId = (req,res) => {
-        return Question.findById(req.params.id)
-            .populate({path: 'Option'})
-            .then((response) => {
+    async getQuestionRandom() {
+        const [result] = await global.connection.promise().query("SELECT id,questionText FROM Question");
+        console.log(result);
+        let randomIndex = Math.floor(Math.random() * result.length);
+        return result[randomIndex];
+    }
 
-            });
+    async getOptionsById(questionId){
+        const [result] = await global.connection.promise().query("SELECT OptionTable.optionText FROM OptionTable JOIN Question_Option ON OptionTable.id = Question_Option.optionId WHERE Question_Option.questionId = ?", [questionId]);
+        return result;
     }
 }
 

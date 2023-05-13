@@ -4,7 +4,14 @@ const QuestionService = require('./questions.service');
 
 const questionService = new QuestionService();
 
-router.get('/', questionService.getAllQuestions);
-router.get('/:id/options', questionService.getOptionsByQuestionId);
+router.get ('/', async (req, res, next) =>{
+
+    res.json(await questionService.getQuestionRandom())
+    })
+
+router.get('/:id/options', async (req, res)=>{
+    const questionId = req.params.id;
+    res.json(await questionService.getOptionsById(questionId));
+})
 
 module.exports = router;
