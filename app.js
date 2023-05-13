@@ -13,11 +13,9 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 app.use(express.json());
 
-const questionRoutes = require('./modules/QuestionRoute');
-const gamesRoutes = require('./modules/game/GameRoute');
+const triviaRoutes = require('./modules/trivia/trivia.route');
 
-app.use('/games', gamesRoutes);
-app.use('/games/:id', questionRoutes);
+app.use('/games/trivia', triviaRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Escuchando en el puerto ${PORT}`));

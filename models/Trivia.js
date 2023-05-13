@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const GameSchema = new mongoose.Schema({
+const TriviaSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
     },
-    image:{
-        type : String,
+    image: {
+        type: String,
         required: true,
     },
     description: {
@@ -27,5 +27,5 @@ const GameSchema = new mongoose.Schema({
     }]
 });
 
-const Game = mongoose.model('Game', GameSchema);
-module.exports = Game;
+const Trivia = mongoose.model('trivia', TriviaSchema);
+module.exports = Trivia;
