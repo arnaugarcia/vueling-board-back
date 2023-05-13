@@ -11,6 +11,12 @@ class TriviaService {
             .catch(error => res.status(500).json({message: 'Error al obtener los Trivia', error}));
     }
 
+    findOne = (req, res) => {
+        return Trivia.findById(req.params.id)
+            .then(game => res.status(200).json(game))
+            .catch(error => res.status(500).json({message: 'Error al obtener el Trivia', error}));
+    }
+
     registerPlayer = (req, res) => {
         Trivia.create([
             {
