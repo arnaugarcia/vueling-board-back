@@ -6,6 +6,25 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
+const WebSocket = require('ws');
+
+const wss = new WebSocket.Server({ port: 4500 });
+
+wss.on('connection', function connection(ws) {
+    console.log('New client connected');
+    ws.onmessage = (message) => {
+        updateClients(message.data);
+    };
+});
+
+const updateClients = (message) => {
+    wss.clients.forEach(function each(client) {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(message);
+        }
+    });
+};
+
 app.use(express.json());
 
 app.use(cors());
