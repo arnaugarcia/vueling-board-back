@@ -6,7 +6,7 @@ const questionService = new QuestionService();
 
 router.get ('/', async (req, res, next) =>{
 
-    res.json(await questionService.getQuestionRandom())
+    res.json(await questionService.getQuestionRandom());
     })
 
 router.get('/:id/options', async (req, res)=>{
