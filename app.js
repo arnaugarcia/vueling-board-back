@@ -10,7 +10,6 @@ app.use(express.json());
 
 app.use(cors());
 
-const triviaRoutes = require('./modules/trivia/trivia.route');
 const playerRoutes = require('./modules/player/player.route');
 const questionRoutes = require('./modules/questions/questions.route');
 const gameRoutes = require('./modules/game/game.route');

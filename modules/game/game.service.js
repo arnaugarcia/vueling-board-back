@@ -6,6 +6,8 @@ class GameService {
         return await global.connection.promise().query("SELECT * FROM Games");
     }
 
+
+
 }
 
 module.exports = GameService;
