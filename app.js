@@ -15,7 +15,7 @@ const questionRoutes = require('./modules/questions/questions.route');
 const gameRoutes = require('./modules/game/game.route');
 
 
-app.use('/player', playerRoutes);
+app.use('/players', playerRoutes);
 app.use('/questions', questionRoutes);
 app.use('/game', gameRoutes);
 
